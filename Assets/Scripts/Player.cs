@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private const  int PosY = -8;   /* y-axis, player start */
-    private const int Speed = 25;  /* var speed */
-    private const int HorizontalLimit = 18;    /* L or R border limit */   //cercare modo per fare un float invece di int
+    private const  int PosY = -8;    //y-axis, player start 
+    private const int Speed = 25;   //var speed 
+    private const int HorizontalLimit = 18;     //L or R border limit    //cercare modo per fare un float invece di int
 
-    public Bullet BulletPrefab;  /* var bullet*/
+    public Bullet BulletPrefab;  //var bullet
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-                var horizontalInput = Input.GetAxisRaw("Horizontal");  /* x-axis input player. Raw implement constant speed without acceleration  */
+                var horizontalInput = Input.GetAxisRaw("Horizontal");  //x-axis input player. Raw implement constant speed without acceleration  
 
         var canMoveRight = transform.position.x <= HorizontalLimit;
         var canMoveLeft = transform.position.x >= -HorizontalLimit;
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(BulletPrefab, transform.position, Quaternion.identity);   /* Spawn the bullet from the player */
+            Instantiate(BulletPrefab, transform.position, Quaternion.identity);   // Spawn the bullet from the player 
         } 
     }
 }
