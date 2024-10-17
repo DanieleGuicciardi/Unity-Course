@@ -1,6 +1,6 @@
 # EPICODE GAMING COURSE
 
-A Space invaders-inspired game using Unity.
+A Space invaders-inspired game using Unity.  
 *Disclaimer: Only Unity-provided sprites are used*
 
 ## 2D game development
