@@ -29,7 +29,8 @@ public class Enemies : MonoBehaviour
 
     public void CheckEnemies()
     {
-        for (int i = transform.childCount - 1; i >= 0; i--)    
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        { 
             var column = transform.GetChild(i);
 
             
@@ -79,7 +80,8 @@ public class Enemies : MonoBehaviour
 -Dei suoni?
 -Menu di start 
 -Game over o Win full screen
-
+-Aggiungere la navicella rossa che passa ogni tanto
+-Aggiungere un punteggio
  */
 
 
