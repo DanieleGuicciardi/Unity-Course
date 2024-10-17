@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     private const int Speed = 25;   //var speed 
     private const int HorizontalLimit = 14;     //L or R border limit    //cercare modo per fare un float invece di int
 
+    private float fireRate = 0.5f;  // Delay between shots (seconds)
+    private float lastShotTime = 0f;  // Time since the last shot
     public Bullet BulletPrefab;  //var bullet
 
     void Start()
@@ -42,10 +44,11 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= lastShotTime + fireRate)  // Check if spacebar is pressed and the cooldown has passed
         {
-            Instantiate(BulletPrefab, transform.position, Quaternion.identity);   // Spawn the bullet from the player 
-        } 
+            Instantiate(BulletPrefab, transform.position, Quaternion.identity);   // Spawn the bullet from the player
+            lastShotTime = Time.time;  // Update the last shot time to current time
+        }
     }
 }
 

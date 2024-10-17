@@ -8,14 +8,14 @@ public class Enemies : MonoBehaviour
     public static Enemies I;  // Static reference to Enemies
     private int rightLimit = 3;
     private int leftLimit = -3;
-    private int initialChildCount;  // Numero iniziale di colonne
+    private int initialChildCount;  // initial num of column
 
     void Start()
     {
         if (I == null) I = this;
         else Destroy(gameObject);
 
-        initialChildCount = transform.childCount;  // Salva il numero iniziale di colonne
+        initialChildCount = transform.childCount;  // save the num of column
 
         StartAnimation();
 
@@ -29,41 +29,39 @@ public class Enemies : MonoBehaviour
 
     public void CheckEnemies()
     {
-        // Scorri tutte le colonne a ritroso, in modo che non ci siano problemi durante la rimozione
-        for (int i = transform.childCount - 1; i >= 0; i--)
-        {
+        for (int i = transform.childCount - 1; i >= 0; i--)    
             var column = transform.GetChild(i);
 
-            // Se la colonna non ha più nemici, distruggila
-            if (column.childCount == 0)
+            
+            if (column.childCount == 0)   // when the column has no enemy, destroy it
             {
-                // Aggiorna i limiti se è la prima o l'ultima colonna
-                if (i == 0)
+                
+                if (i == 0)  //refresh the limit border
                 {
-                    leftLimit -= 2;  // Aggiorna il limite sinistro
+                    leftLimit -= 2; 
                 }
                 else if (i == transform.childCount - 1)
                 {
-                    rightLimit += 2;  // Aggiorna il limite destro
+                    rightLimit += 2; 
                 }
 
-                // Distruggi la colonna vuota
+                
                 Destroy(column.gameObject);
             }
         }
         
-        if (transform.childCount == 1 && transform.GetChild(0).childCount == 1)    //la colonna viene distrutta dopo che colpisco un altro nemico quindi mi rimarra sempre una colonna ERRORE?
+        if (transform.childCount == 1 && transform.GetChild(0).childCount == 1)    
         {
-            Debug.Log("Hai vinto!");
+            Debug.Log("YOU WIN!!");
         }        
     }
 
     private void StartAnimation()
     {
-        float accelerationFactor = 0.5f;  // Velocità di accelerazione
+        float accelerationFactor = 0.5f;  // Acceleration x death enemy
         float duration = Mathf.Max(0.5f, 3 - (accelerationFactor * (initialChildCount - transform.childCount)));
 
-        // Aggiungi la sequenza di animazione
+        
         var sequence = DOTween.Sequence();
         sequence.Append(transform.DOMoveX(rightLimit, duration));
         sequence.Append(transform.DOMoveX(leftLimit, duration));
@@ -75,8 +73,12 @@ public class Enemies : MonoBehaviour
 
 
 
-/* Implementazioni:
--aumento della velocita di spostamento dei nemici manmano che vengono distrutti
+/* Implementazioni da fare:
+-I nemici possono sparare
+-Delle animazioni di distruzione
+-Dei suoni?
+-Menu di start 
+-Game over o Win full screen
 
  */
 

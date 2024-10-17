@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private void OnDestroy()
-    {
-        // Quando un nemico viene distrutto, chiama il metodo CheckEnemies() nella classe Enemies
-        if (Enemies.I != null)
-        {
-            Enemies.I.CheckEnemies();
-        }
-    }
-    
     
     void OnTriggerEnter2D(Collider2D collider)       //bullet and enemy destroy animation
     {
