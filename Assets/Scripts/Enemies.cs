@@ -5,19 +5,22 @@ using DG.Tweening;
 
 public class Enemies : MonoBehaviour
 {
-    public static Enemies I;     //static variabile. Refere to Enemies with I
-
-    private int rightLimit  = 10;
-    private int leftLimit = -10;
+    public static Enemies I;  // Static reference to Enemies
+    private int rightLimit = 3;
+    private int leftLimit = -3;
+    private int initialChildCount;  // Numero iniziale di colonne
 
     void Start()
     {
         if (I == null) I = this;
         else Destroy(gameObject);
 
+        initialChildCount = transform.childCount;  // Salva il numero iniziale di colonne
+
         StartAnimation();
 
-        for(int i = 0; i < transform.childCount; i++)
+        // Rinomina le colonne dei nemici
+        for (int i = 0; i < transform.childCount; i++)
         {
             var enemyColumn = transform.GetChild(i);
             enemyColumn.name = "EnemyColumn " + i;
@@ -26,30 +29,55 @@ public class Enemies : MonoBehaviour
 
     public void CheckEnemies()
     {
-        if(transform.GetChild(0).childCount == 0)   //increase limit when a column is destroyed
+        // Scorri tutte le colonne a ritroso, in modo che non ci siano problemi durante la rimozione
+        for (int i = transform.childCount - 1; i >= 0; i--)
         {
-            leftLimit -= 2;
-            Destroy(transform.GetChild(0).gameObject);
-        }
+            var column = transform.GetChild(i);
 
-        var lastChildIndex = transform.childCount - 1;
-        if(transform.GetChild(lastChildIndex).childCount == 0)   
-        {
-            rightLimit += 2;
-            Destroy(transform.GetChild(lastChildIndex).gameObject);
+            // Se la colonna non ha più nemici, distruggila
+            if (column.childCount == 0)
+            {
+                // Aggiorna i limiti se è la prima o l'ultima colonna
+                if (i == 0)
+                {
+                    leftLimit -= 2;  // Aggiorna il limite sinistro
+                }
+                else if (i == transform.childCount - 1)
+                {
+                    rightLimit += 2;  // Aggiorna il limite destro
+                }
+
+                // Distruggi la colonna vuota
+                Destroy(column.gameObject);
+            }
         }
+        
+        if (transform.childCount == 1 && transform.GetChild(0).childCount == 1)    //la colonna viene distrutta dopo che colpisco un altro nemico quindi mi rimarra sempre una colonna ERRORE?
+        {
+            Debug.Log("Hai vinto!");
+        }        
     }
 
-    private void StartAnimation()               //enemies moving animation
+    private void StartAnimation()
     {
+        float accelerationFactor = 0.5f;  // Velocità di accelerazione
+        float duration = Mathf.Max(0.5f, 3 - (accelerationFactor * (initialChildCount - transform.childCount)));
+
+        // Aggiungi la sequenza di animazione
         var sequence = DOTween.Sequence();
-        sequence.Append(transform.DOMoveX(rightLimit, 3));
-        sequence.Append(transform.DOMoveX(leftLimit, 3));
+        sequence.Append(transform.DOMoveX(rightLimit, duration));
+        sequence.Append(transform.DOMoveX(leftLimit, duration));
         sequence.OnComplete(StartAnimation);
-        sequence.Play();    
+        sequence.Play();
     }
 }
 
 
+
+
+/* Implementazioni:
+-aumento della velocita di spostamento dei nemici manmano che vengono distrutti
+
+ */
 
 

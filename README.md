@@ -1,6 +1,7 @@
 # EPICODE GAMING COURSE
 
-Space invaders clone using UNITY.
+A Space invaders-inspired game using Unity.
+*Disclaimer: Only Unity-provided sprites are used*
 
 ## 2D game development
 

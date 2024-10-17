@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const int VerticalLimit = 10;   //Top border limit 
+    private const int VerticalLimit = 15;   //Top border limit 
 
 
     void Update()

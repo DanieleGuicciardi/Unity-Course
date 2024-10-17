@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private const  int PosY = -8;    //y-axis, player start 
+    private const  int PosY = -13;    //y-axis, player start 
     private const int Speed = 25;   //var speed 
-    private const int HorizontalLimit = 18;     //L or R border limit    //cercare modo per fare un float invece di int
+    private const int HorizontalLimit = 14;     //L or R border limit    //cercare modo per fare un float invece di int
 
     public Bullet BulletPrefab;  //var bullet
 
