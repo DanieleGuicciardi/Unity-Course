@@ -28,7 +28,6 @@ public class EnemyBullet : MonoBehaviour
 
 /* 
 Ci sono diversi problemi:
--Il proiettile del player non hitta piu i nemici
 -Dopo il delay impostato tutti gli enemy sparano --> fare una cosa piu omogenea.
 -mi uccido
  */

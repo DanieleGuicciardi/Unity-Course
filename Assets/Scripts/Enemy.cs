@@ -37,32 +37,21 @@ public class Enemy : MonoBehaviour
         // Istanzia il proiettile nemico e fallo sparare verso il basso
         Instantiate(enemyBulletPrefab, transform.position, Quaternion.identity);
 
-        // Aggiungi qui altre logiche, come effetti sonori o animazioni se necessario
+        //Devo aggiungere effetti sonori o effetti
     }
 
     void OnTriggerEnter2D(Collider2D collider)  // Bullet and enemy destroy logic
     {
         if (collider.gameObject.CompareTag("Bullet"))   // Quando il proiettile tocca il nemico
         {
-            // Notifica al gestore dei nemici
-            enemiesManager.CheckEnemies();
+
             
             // Distruggi il proiettile
             Destroy(collider.gameObject);  
 
             // Distruggi il nemico
             Destroy(gameObject);   
-
-            // Aumenta il ritmo di fuoco generale man mano che i nemici vengono distrutti
-            IncreaseFireRate();
         }
-    }
-
-    private void IncreaseFireRate()
-    {
-        // Riduci il tempo minimo e massimo di fuoco per tutti i nemici
-        minFireRate = Mathf.Max(1f, minFireRate - fireRateAcceleration);  // Il minimo rateo non scende sotto 1 secondo
-        maxFireRate = Mathf.Max(2f, maxFireRate - fireRateAcceleration);  // Il massimo rateo non scende sotto 2 secondi
     }
 
 }

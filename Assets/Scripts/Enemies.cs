@@ -36,7 +36,7 @@ public class Enemies : MonoBehaviour
             
             if (column.childCount == 0)   // when the column has no enemy, destroy it
             {
-                
+            
                 if (i == 0)  //refresh the limit border
                 {
                     leftLimit -= 2; 
