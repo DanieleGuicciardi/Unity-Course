@@ -75,7 +75,6 @@ public class Enemies : MonoBehaviour
 
 
 /* Implementazioni da fare:
--I nemici possono sparare
 -Delle animazioni di distruzione
 -Dei suoni?
 -Menu di start 
