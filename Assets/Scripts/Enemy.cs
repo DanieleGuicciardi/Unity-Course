@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
    public GameObject enemyBulletPrefab;  //Prefab 
     public float minFireRate = 10f;  // Tempo minimo tra gli spari iniziale
-    public float maxFireRate = 15f;  // Tempo massimo tra gli spari iniziale
+    public float maxFireRate = 50f;  // Tempo massimo tra gli spari iniziale
     private float fireTimer;  // Timer per tracciare quando sparare
     public float fireRateAcceleration = 0.1f;  // Fattore di accelerazione dello sparo man mano che i nemici muoiono
     private Enemies enemiesManager;  // Riferimento al gestore dei nemici
