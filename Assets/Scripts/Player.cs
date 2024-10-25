@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private float lastShotTime = 0f;  // Time since the last shot
     public Bullet BulletPrefab;  //var bullet
     public int lives = 3;  //player lives
+    public GameManager gameManager;
 
     void Start()
     {
@@ -68,16 +69,9 @@ public class Player : MonoBehaviour
         lives--;
         if (lives < 0)
         {
-            GameOver();
+            gameManager.GameOver();
         }
     }
-
-
-    private void GameOver()
-    {
-        Debug.Log("GAME OVER");
-    }
-
 
 }
 
