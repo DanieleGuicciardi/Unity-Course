@@ -27,6 +27,12 @@ public class Enemies : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        CheckEnemies();
+    }
+
+
     public void CheckEnemies()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
@@ -51,7 +57,7 @@ public class Enemies : MonoBehaviour
             }
         }
         
-        if (transform.childCount == 1 && transform.GetChild(0).childCount == 1)    
+        if (transform.childCount == 0)    
         {
             Debug.Log("YOU WIN!!");
         }        

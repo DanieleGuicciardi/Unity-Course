@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private float fireRate = 0.5f;  // Delay between shots (seconds)
     private float lastShotTime = 0f;  // Time since the last shot
     public Bullet BulletPrefab;  //var bullet
+    public int lives = 3;  //player lives
 
     void Start()
     {
@@ -50,7 +51,37 @@ public class Player : MonoBehaviour
             lastShotTime = Time.time;  // Update the last shot time to current time
         }
     }
+
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("enemyBullet"))
+        {
+            TakeDamage();
+
+            Destroy(collider.gameObject);
+        }
+    }
+
+    private void TakeDamage()
+    {
+        lives--;
+        if (lives < 0)
+        {
+            GameOver();
+        }
+    }
+
+
+    private void GameOver()
+    {
+        Debug.Log("GAME OVER");
+    }
+
+
 }
+
+
 
 
 
